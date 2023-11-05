@@ -29,7 +29,7 @@ const start = async () => {
             console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
         
         } catch (error) {
-            console.log(error)
+            console.log({msg: error})
         }
 }
 start()
