@@ -17,7 +17,10 @@ const ClientSchema = new mongoose.Schema({
         unique: true,
     },
     phone: {
-        type: String
+        type: String,
+        required: [true, 'Please provide name'],
+        maxlength: 12,
+        minlength: 10,
     }
 })
  

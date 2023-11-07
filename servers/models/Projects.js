@@ -8,7 +8,9 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please provide name'],
         maxlength: 50,
-        minlength: 4,
+        minlength:6,
+        unique: true
+      
       },
     description: {
         type: String,
@@ -19,7 +21,7 @@ const ProjectSchema = new mongoose.Schema({
     
     status: {
         type: String,
-        enum: ['Not started', 'In Progress', 'Completed']
+        enum: ['Not Started', 'In Progress', 'Completed']
     },
     clientId: {
         // for relationship based on collection to map to Project model
