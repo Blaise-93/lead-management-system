@@ -25,7 +25,7 @@ const port = process.env.PORT || 3000
 
 const start = async () => {
         try {
-             await connectDB()
+              await connectDB()
             app.listen(port)
             console.log(`Running a GraphQL API server at http://localhost:${port}/graphql`)
         
