@@ -1,6 +1,7 @@
 
 const Client = require('../models/Client')
 const Project = require('../models/Projects')
+const jwt = require('jsonwebtoken')
 // console.log(Object.entries(Client))
 
 const { 
@@ -28,6 +29,7 @@ const ClientType = new GraphQLObjectType({
         id: {type: GraphQLID},
         name: {type: GraphQLString},
         email: {type: GraphQLString},
+        password: {type: GraphQLString},
         phone: {type: GraphQLString}
     })
 });
@@ -179,6 +181,18 @@ const RootQuery = new GraphQLObjectType({
                 id: { type: GraphQLNonNull(GraphQLID)}
             },
             resolve(parent, args) {
+
+                //TODO: CASCADE_DELETION:delete project associated with the client too
+               // Project.find({clientId: args.id})
+                //    .then((projects) => {
+                        //loop using foreach to delete the client assigned
+                        // to the project
+                     //   projects.forEach(project => {
+                            // deletes all projects associated with the client
+                     //    project;
+                     //   });
+                   // })
+                
                 // delete by id of each data that matches the client id
                 // 
                 return Client.findByIdAndDelete(args.id)
@@ -229,7 +243,7 @@ const RootQuery = new GraphQLObjectType({
 
             },
             resolve(parent, args){
-                // delete by id of each data that matches the project id
+               // delete by id of each data that matches the project id
                 return Project.findByIdAndRemove(args.id)
             }
         },
@@ -276,9 +290,11 @@ const RootQuery = new GraphQLObjectType({
     },
  });
 
+
+ 
+// AUTH Registration 
+
 module.exports = new GraphQLSchema({
     query: RootQuery,
     mutation
 })
-
-// 1:06hr

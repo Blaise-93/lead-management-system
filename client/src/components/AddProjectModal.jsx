@@ -45,6 +45,7 @@ const  AddProjectModal = () => {
             data: { projects: [...projects, addProject ] }
         })
     }
+    
 })
 
 

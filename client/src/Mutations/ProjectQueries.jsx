@@ -51,5 +51,63 @@ const ADD_PROJECTS = gql`
         }
         `;
 
+const DELETE_PROJECT = gql`
+        mutation DeleteProject($id:ID!) {
+            deleteProject(id:$id) {
+                id
+            }
+        }
 
-export { GET_PROJECTS, GET_PROJECT, ADD_PROJECTS };
+`;
+
+/* {
+    "query": "mutation ($id: ID!, $description: String!, $status: ProjectStatusUpdate!) {
+      updateProject(id: $id, description: $description, status: $status) {
+        id
+        description
+        status
+      }
+    }",
+    "variables": {
+      "id": "123",
+      "description": "A new description for the project",
+      "status": "COMPLETED"
+    }
+  }
+   */
+
+
+// update project
+const UPDATE_PROJECT = gql`
+    mutation UpdateProject(
+          $id:ID!
+          $name:String!
+          $description:String! 
+          $status:ProjectStatusUpdate! 
+        ) {
+            updateProject(
+                id: $id
+                name:$name
+                description:$description
+                status: $status
+                
+                ) {
+                    id
+                    name
+                    description
+                    status
+                    client  {
+                         id
+                         name
+                         email
+                         phone 
+
+                    }
+            }
+        }
+        `;
+
+
+
+export { GET_PROJECTS, GET_PROJECT, ADD_PROJECTS, 
+        DELETE_PROJECT, UPDATE_PROJECT };

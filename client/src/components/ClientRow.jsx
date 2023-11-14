@@ -2,6 +2,8 @@ import { FaTrash } from 'react-icons/fa'
 import { useMutation } from '@apollo/client'
 import { DELETE_CLIENT } from '../Mutations/ClientMutations'
 import { GET_CLIENTS } from '../ClientsQuery.js/clients'
+import { GET_PROJECTS } from '../Mutations/ProjectQueries';
+
 
 
 /** ClientRow is a function where we drill our client row props which is being fetched from 
@@ -15,10 +17,10 @@ function ClientRow({ client }) {
         variables: { id: client.id },
         // refetches the query to update the state of the UI
         // this method is not cool for multiple queries
-       // refetchQueries: [{ query: GET_CLIENTS}]
+     //  refetchQueries: [{ query: GET_CLIENTS}]
 
        // update method is better than refetchQuery
-       update(cache, {data: { deleteClient }}) {
+    update(cache, {data: { deleteClient }}) {
             const { clients } = cache.readQuery({
                 query: GET_CLIENTS
             });
@@ -27,7 +29,7 @@ function ClientRow({ client }) {
                 data: { clients: clients
                     .filter(client => client.id !== deleteClient.id) },
             });
-       }
+       } 
     });
 
 

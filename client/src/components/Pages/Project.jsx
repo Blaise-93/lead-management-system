@@ -3,6 +3,8 @@ import { useQuery } from '@apollo/client'
 import { GET_PROJECT } from '../../Mutations/ProjectQueries'
 import Spinner from '../Spinner'
 import ClientInfo from './ClientInfo'
+import DeleteProjectButton from '../DeleteProjectButton'
+import EditProject from '../EditProject'
 
 
 export default function Project() {
@@ -30,7 +32,9 @@ export default function Project() {
               <h5 className='mt-3'> { name } </h5 >
               <p className='lead'> {status } </p>
 
-               < ClientInfo client={ client }/> 
+               < ClientInfo client={ client }/>
+               <EditProject project={data.project }/>
+               <DeleteProjectButton projectId={project.id }/> 
           
           </div>
          )
